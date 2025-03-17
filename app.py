@@ -4,7 +4,7 @@ import folium
 import math
 from io import StringIO
 import streamlit.components.v1 as components
-from streamlit_folium import st_folium  
+# from streamlit_folium import st_folium  
 import geopandas
 from pyproj import Transformer
 
