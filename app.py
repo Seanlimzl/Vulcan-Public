@@ -16,7 +16,7 @@ klokan_provinces_geojson = geopandas.read_file(r"Dev Data Files\klokan_provinces
 
 routes_roads_only = geopandas.read_file(r"Dev Data Files\routes_roads_only.geojson")
 
-data = pd.read_csv(r"Test Inputs\Corrected data files\combined_data.csv", dtype={'id': int, 'hoard': int})
+# data = pd.read_csv(r"Test Inputs\Corrected data files\combined_data.csv", dtype={'id': int, 'hoard': int})
 
 def convert_to_radii(raw_number, scale_factor=1):
     """
