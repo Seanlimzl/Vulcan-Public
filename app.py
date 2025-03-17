@@ -8,13 +8,13 @@ import streamlit.components.v1 as components
 import geopandas
 from pyproj import Transformer
 
-fouteen_ad_geojson = geopandas.read_file(r"Dev Data Files\roman_empire_ad_14_provinces.geojson")
+fouteen_ad_geojson = geopandas.read_file("Dev Data Files/roman_empire_ad_14_provinces.geojson")
 
-sixtynine_ad_geojson = geopandas.read_file(r"Dev Data Files\roman_empire_ad_69_provinces.geojson")
+sixtynine_ad_geojson = geopandas.read_file("Dev Data Files/roman_empire_ad_69_provinces.geojson")
 
-klokan_provinces_geojson = geopandas.read_file(r"Dev Data Files\klokan_provinces.geojson")
+klokan_provinces_geojson = geopandas.read_file("Dev Data Files/klokan_provinces.geojson")
 
-routes_roads_only = geopandas.read_file(r"Dev Data Files\routes_roads_only.geojson")
+routes_roads_only = geopandas.read_file("Dev Data Files/routes_roads_only.geojson")
 
 # data = pd.read_csv(r"Test Inputs\Corrected data files\combined_data.csv", dtype={'id': int, 'hoard': int})
 
