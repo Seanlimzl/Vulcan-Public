@@ -18,20 +18,20 @@ routes_roads_only = geopandas.read_file("Dev Data Files/routes_roads_only.geojso
 
 # data = pd.read_csv(r"Test Inputs\Corrected data files\combined_data.csv", dtype={'id': int, 'hoard': int})
 
-def convert_to_radii(raw_number, scale_factor=1):
-    """
-    Convert a raw number to a radius that respects the area principle.
+# def convert_to_radii(raw_number, scale_factor=1):
+#     """
+#     Convert a raw number to a radius that respects the area principle.
     
-    Parameters:
-      raw_number (float): A raw number to convert.
-      scale_factor (float): A scale factor to modulate the radius.
+#     Parameters:
+#       raw_number (float): A raw number to convert.
+#       scale_factor (float): A scale factor to modulate the radius.
     
-    Returns:
-      float: A radius corresponding to the raw number.
-    """
-    area = raw_number
-    radius = math.sqrt(area / math.pi) * scale_factor
-    return radius
+#     Returns:
+#       float: A radius corresponding to the raw number.
+#     """
+#     area = raw_number
+#     radius = math.sqrt(area / math.pi) * scale_factor
+#     return radius
 
 
 
@@ -348,7 +348,7 @@ def aggregate_overlapping_circles(data, single_size=10000, relative_scale=1.0, a
     
     return result
 
-def create_map(data, scale_factor=3, zoom_level=5, fill_color="#708090", stroke_color="#708090", 
+def create_map(data, zoom_level=5, fill_color="#708090", stroke_color="#708090", 
                opacity=0.7, weight=0.5, base_tile="OpenStreetMap", initial_center=None, initial_zoom=None,
                dare_fill_color="#f2f2f2", dare_stroke_color="#f2f2f2", dare_weight=1, dare_fill_opacity=0.3,
                route_color="#ffa500", route_weight=2.0, cutoff=0, icon_size=30, single_size=10000, 
@@ -498,7 +498,7 @@ def create_map(data, scale_factor=3, zoom_level=5, fill_color="#708090", stroke_
     error_rows = []
 
     # New helper function to add points
-    def add_point_to_map(row, feature_group, cutoff, scale_factor, fill_color, stroke_color, opacity, weight, single_size, 
+    def add_point_to_map(row, feature_group, cutoff, fill_color, stroke_color, opacity, weight, single_size, 
                          aureus_stroke_color, aureus_fill_color, aureus_stroke_weight, aureus_stroke_opacity, aureus_fill_opacity,
                          denarius_stroke_color, denarius_fill_color, denarius_stroke_weight, denarius_stroke_opacity, denarius_fill_opacity,
                          relative_scale):
@@ -603,7 +603,6 @@ def create_map(data, scale_factor=3, zoom_level=5, fill_color="#708090", stroke_
                 row=row,
                 feature_group=coins,
                 cutoff=cutoff,
-                scale_factor=scale_factor,
                 fill_color=fill_color,
                 stroke_color=stroke_color,
                 opacity=opacity,
@@ -739,7 +738,7 @@ with st.expander("About Circle Aggregation"):
 
 # Sidebar options for interactive map customization
 st.sidebar.header("Map Options")
-scale_factor = st.sidebar.slider("Scale Factor", min_value=0.1, max_value=5.0, value=4.0, step=0.1)
+# scale_factor = st.sidebar.slider("Scale Factor", min_value=0.1, max_value=5.0, value=4.0, step=0.1)
 zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=10, value=5, step=1)
 fill_color = st.sidebar.color_picker("Fill Color", value="#C5C5C5")
 stroke_color = st.sidebar.color_picker("Stroke Color", value="#7F7F7F")
@@ -843,7 +842,7 @@ if uploaded_file is not None:
             # Create the map using the helper function, passing in the initial view
             m, error_rows = create_map(
                 df_map,
-                scale_factor,
+                # scale_factor,
                 zoom_level,
                 fill_color,
                 stroke_color,
