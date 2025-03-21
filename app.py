@@ -432,8 +432,8 @@ def create_map(data, zoom_level=5, fill_color="#708090", stroke_color="#708090",
 
     folium.TileLayer(
         tiles="//cawm.lib.uiowa.edu/tiles/{z}/{x}/{y}.png",
-        name="CAWM",
-        attr="Tiles: CAWM",
+        name="AWMC",
+        attr="Tiles: AWMC",
         max_zoom=15,
         show=cawm_show
     ).add_to(m)
