@@ -739,76 +739,101 @@ with st.expander("About Circle Aggregation"):
 # Sidebar options for interactive map customization
 st.sidebar.header("Map Options")
 # scale_factor = st.sidebar.slider("Scale Factor", min_value=0.1, max_value=5.0, value=4.0, step=0.1)
-zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=10, value=5, step=1)
-fill_color = st.sidebar.color_picker("Fill Color", value="#C5C5C5")
-stroke_color = st.sidebar.color_picker("Stroke Color", value="#7F7F7F")
-opacity = st.sidebar.slider("Opacity", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
-weight = st.sidebar.slider("Weight", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
-easyprint_enabled = st.sidebar.checkbox("Enable EasyPrint", value=True)
+zoom_level = st.sidebar.slider("Zoom Level", min_value=1, max_value=10, value=5, step=1, 
+                             help="Controls the initial zoom level of the map. Higher values zoom in closer.")
+fill_color = st.sidebar.color_picker("Fill Color", value="#C5C5C5", 
+                                   help="Default fill color for circles that are not Aureus or Denarius.")
+stroke_color = st.sidebar.color_picker("Stroke Color", value="#7F7F7F", 
+                                     help="Default border color for circles that are not Aureus or Denarius.")
+opacity = st.sidebar.slider("Opacity", min_value=0.0, max_value=1.0, value=0.5, step=0.1, 
+                          help="Transparency level for the default circle fill.")
+weight = st.sidebar.slider("Weight", min_value=0.0, max_value=1.0, value=0.5, step=0.1, 
+                         help="Thickness of the default circle border.")
+easyprint_enabled = st.sidebar.checkbox("Enable EasyPrint", value=True, 
+                                      help="Adds a print button to the map for exporting as PDF or PNG.")
 
 # New selectbox for choosing tile layer
-tile_layer_option = st.sidebar.selectbox("Select Tile Layer", ["CAWM", "OpenStreetMap", "Imperium", "Orbis"])
-hide_zero = st.sidebar.checkbox("Hide rows with zero quantity", value=True)
+tile_layer_option = st.sidebar.selectbox("Select Tile Layer", ["CAWM", "OpenStreetMap", "Imperium", "Orbis"], 
+                                       help="Choose the background map style. AWMC is Ancient World Mapping Center, Imperium shows Roman provinces, Orbis is Stanford's historical transportation network.")
+hide_zero = st.sidebar.checkbox("Hide rows with zero quantity", value=True, 
+                              help="When checked, locations with zero coins will not be shown on the map.")
 
 # New sidebar header and inputs for DARE Provinces styling
 st.sidebar.header("DARE Provinces Styling")
-dare_fill_color = st.sidebar.color_picker("DARE Fill Color", value="#D8D6D6")
-dare_stroke_color = st.sidebar.color_picker("DARE Border Color", value="#626262")
-dare_weight = st.sidebar.slider("DARE Weight", min_value=0.0, max_value=5.0, value=1.5, step=0.1)
-dare_fill_opacity = st.sidebar.slider("DARE Fill Opacity", min_value=0.0, max_value=1.0, value=0.3, step=0.1)
+dare_fill_color = st.sidebar.color_picker("DARE Fill Color", value="#D8D6D6", 
+                                        help="Fill color for the Digital Atlas of the Roman Empire provinces.")
+dare_stroke_color = st.sidebar.color_picker("DARE Border Color", value="#626262", 
+                                          help="Border color for the DARE provinces.")
+dare_weight = st.sidebar.slider("DARE Weight", min_value=0.0, max_value=5.0, value=1.5, step=0.1, 
+                              help="Thickness of the DARE province borders.")
+dare_fill_opacity = st.sidebar.slider("DARE Fill Opacity", min_value=0.0, max_value=1.0, value=0.3, step=0.1, 
+                                    help="Transparency level for the DARE province fill colors.")
 
 # Greyscale
-grayscale = st.sidebar.checkbox("Greyscale", value=True)
+grayscale = st.sidebar.checkbox("Greyscale", value=True, 
+                              help="Convert the background map to black and white.")
 
 # Add to sidebar controls (after DARE Provinces Styling section)
 st.sidebar.header("Routes Styling")
-route_color = st.sidebar.color_picker("Route Color", value="#080808")  # Orange default
-route_weight = st.sidebar.slider("Route Weight", min_value=0.0, max_value=1.0, value=0.25, step=0.05)
+route_color = st.sidebar.color_picker("Route Color", value="#080808", 
+                                    help="Color for Roman roads and routes.")  
+route_weight = st.sidebar.slider("Route Weight", min_value=0.0, max_value=1.0, value=0.25, step=0.05, 
+                               help="Thickness of the Roman roads and routes.")
 
 # Add circle marker controls
 st.sidebar.header("Circle Marker Styling")
-aureus_color = st.sidebar.color_picker("Aureus Circle Color", value="#FFD700")  # Gold color
-denarius_color = st.sidebar.color_picker("Denarius Circle Color", value="#C0C0C0")  # Silver color
-single_size = st.sidebar.slider("Circle Radius (meters)", min_value=1000, max_value=50000, value=10000, step=1000)
-aureus_stroke_color = st.sidebar.color_picker("Aureus Circle Stroke Color", value="#080808")  # Gold color
-denarius_stroke_color = st.sidebar.color_picker("Denarius Circle Stroke Color", value="#080808")  # Silver color
+aureus_color = st.sidebar.color_picker("Aureus Circle Color", value="#FFD700", 
+                                     help="Fill color for Aureus coin circles.")  # Gold color
+denarius_color = st.sidebar.color_picker("Denarius Circle Color", value="#C0C0C0", 
+                                       help="Fill color for Denarius coin circles.")  # Silver color
+single_size = st.sidebar.slider("Circle Radius (meters)", min_value=1000, max_value=50000, value=10000, step=1000, 
+                              help="Base radius size for circles representing a single coin or coins below the cutoff value.")
+aureus_stroke_color = st.sidebar.color_picker("Aureus Circle Stroke Color", value="#080808", 
+                                            help="Border color for Aureus coin circles.")
+denarius_stroke_color = st.sidebar.color_picker("Denarius Circle Stroke Color", value="#080808", 
+                                              help="Border color for Denarius coin circles.")
 
 # Add new controls for aureus and denarius styling
 st.sidebar.subheader("Aureus Styling")
-aureus_stroke_weight = st.sidebar.slider("Aureus Stroke Weight", min_value=0.1, max_value=5.0, value=1.0, step=0.1)
-aureus_stroke_opacity = st.sidebar.slider("Aureus Stroke Opacity", min_value=0.1, max_value=1.0, value=0.80, step=0.1)
-aureus_fill_opacity = st.sidebar.slider("Aureus Fill Opacity", min_value=0.1, max_value=1.0, value=0.5, step=0.1)
+aureus_stroke_weight = st.sidebar.slider("Aureus Stroke Weight", min_value=0.1, max_value=5.0, value=1.0, step=0.1, 
+                                       help="Thickness of the Aureus circle borders.")
+aureus_stroke_opacity = st.sidebar.slider("Aureus Stroke Opacity", min_value=0.1, max_value=1.0, value=0.80, step=0.1, 
+                                        help="Transparency level for the Aureus circle borders.")
+aureus_fill_opacity = st.sidebar.slider("Aureus Fill Opacity", min_value=0.1, max_value=1.0, value=0.5, step=0.1, 
+                                      help="Transparency level for the Aureus circle fill.")
 
 st.sidebar.subheader("Denarius Styling")
-denarius_stroke_weight = st.sidebar.slider("Denarius Stroke Weight", min_value=0.1, max_value=5.0, value=1.0, step=0.1)
-denarius_stroke_opacity = st.sidebar.slider("Denarius Stroke Opacity", min_value=0.1, max_value=1.0, value=0.80, step=0.1)
-denarius_fill_opacity = st.sidebar.slider("Denarius Fill Opacity", min_value=0.1, max_value=1.0, value=0.5, step=0.1)
+denarius_stroke_weight = st.sidebar.slider("Denarius Stroke Weight", min_value=0.1, max_value=5.0, value=1.0, step=0.1, 
+                                         help="Thickness of the Denarius circle borders.")
+denarius_stroke_opacity = st.sidebar.slider("Denarius Stroke Opacity", min_value=0.1, max_value=1.0, value=0.80, step=0.1, 
+                                          help="Transparency level for the Denarius circle borders.")
+denarius_fill_opacity = st.sidebar.slider("Denarius Fill Opacity", min_value=0.1, max_value=1.0, value=0.5, step=0.1, 
+                                        help="Transparency level for the Denarius circle fill.")
 
 # Add relative scaling control
 st.sidebar.header("Size Scaling")
 relative_scale = st.sidebar.slider("Relative Scale Factor", min_value=0.1, max_value=10.0, value=1.0, step=0.1, 
-                                  help="Controls the relationship between point value and size. Lower values make size differences more dramatic.")
+                                  help="Controls the relationship between coin quantity and circle size (with the single size as the anchor). Lower values make size differences less dramatic, higher values make them more pronounced.")
 
 # Add circle aggregation options
 st.sidebar.header("Circle Aggregation")
 aggregate_by_distance = st.sidebar.checkbox("Aggregate by Distance", value=False, 
-                                          help="Combine circles within a specified distance of each other")
+                                          help="Combine circles within a specified distance of each other. This simplifies the map by grouping nearby finds.")
 if aggregate_by_distance:
     distance_threshold = st.sidebar.slider("Distance Threshold (meters)", min_value=1000, max_value=100000, value=10000, step=1000,
-                                         help="Maximum distance between circle centers for aggregation")
+                                         help="Maximum distance between circle centers for aggregation. Circles closer than this will be combined.")
 else:
     distance_threshold = 10000  # Default value when not used
 
 aggregate_enveloped = st.sidebar.checkbox("Aggregate Enveloped Circles", value=False,
-                                        help="Combine smaller circles that are completely enveloped by larger ones")
+                                        help="Combine smaller circles that are completely contained within larger ones. This reduces visual clutter when smaller finds are within the radius of larger ones.")
 
 # Add cutoff control to sidebar
-cutoff = st.sidebar.number_input("Cutoff Value", min_value=0, value=2)
-
-# icon_size = st.sidebar.slider("Icon Weight", min_value=1, max_value=60, value=6, step=1)
+cutoff = st.sidebar.number_input("Cutoff Value", min_value=0, value=2, 
+                               help="Circles with a quantity below this value will be displayed at a fixed size rather than scaled. Useful for making small finds visible.")
 
 # File uploader for CSV input
-uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
+uploaded_file = st.file_uploader("Upload CSV", type=["csv"], help="Upload a CSV file containing coin hoard data. Must include columns for latitude, longitude, hoardName, and quantity.")
 
 if uploaded_file is not None:
     try:
